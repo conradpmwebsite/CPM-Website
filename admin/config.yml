@@ -1,0 +1,127 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Contact & Social Links"
+    files:
+      - name: "settings"
+        label: "Contact Details"
+        file: "data/settings.json"
+        fields:
+          - {label: "Phone Number (shown on site)", name: "phone", widget: "string", hint: "e.g. +971 2 627 7632"}
+          - {label: "WhatsApp Number", name: "whatsapp", widget: "string", hint: "Digits only with country code, no + sign or spaces — e.g. 971501234567"}
+          - {label: "Email Address", name: "email", widget: "string"}
+          - {label: "Address — Line 1", name: "addressLine1", widget: "string"}
+          - {label: "Address — Line 2", name: "addressLine2", widget: "string"}
+          - {label: "Instagram Link", name: "instagram", widget: "string", required: false, hint: "Paste the full link, e.g. https://instagram.com/yourpage — leave blank to hide it"}
+          - {label: "TikTok Link", name: "tiktok", widget: "string", required: false, hint: "Paste the full link — leave blank to hide it"}
+
+  - name: "listings"
+    label: "Listings"
+    files:
+      - name: "listings"
+        label: "Property Listings"
+        file: "data/listings.json"
+        fields:
+          - label: "Listings"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.price}}"
+            fields:
+              - { label: "Title (English)", name: "title", widget: "string" }
+              - { label: "Title (Arabic)", name: "titleAr", widget: "string", required: false }
+              - { label: "Title (Hindi)", name: "titleHi", widget: "string", required: false }
+              - { label: "Title (Urdu)", name: "titleUr", widget: "string", required: false }
+              - { label: "Title (Russian)", name: "titleRu", widget: "string", required: false }
+              - { label: "Title (Chinese)", name: "titleZh", widget: "string", required: false }
+              - label: "District"
+                name: "district"
+                widget: "select"
+                options: ["Al Raha Beach", "Khalifa City", "Saadiyat Island", "Al Reem Island", "Yas Island"]
+              - label: "Type"
+                name: "type"
+                widget: "select"
+                options: ["Residential", "Commercial", "Investment"]
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["For Sale", "For Rent"]
+              - { label: "Price (display text, e.g. \"AED 1,850,000\" or \"AED 145,000/yr\")", name: "price", widget: "string" }
+              - { label: "Price (number only, no commas — used for the price filter)", name: "priceValue", widget: "number", value_type: "int" }
+              - { label: "Bedrooms (0 for studio/office/retail)", name: "beds", widget: "number", value_type: "int" }
+              - { label: "Bathrooms", name: "baths", widget: "number", value_type: "int" }
+              - { label: "Square Feet (e.g. \"1,240\")", name: "sqft", widget: "string" }
+              - { label: "Photo", name: "img", widget: "image" }
+
+  - name: "districts"
+    label: "Districts"
+    files:
+      - name: "districts"
+        label: "Districts"
+        file: "data/districts.json"
+        fields:
+          - label: "Districts"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Tag / short label (English)", name: "tag", widget: "string" }
+              - { label: "Tag (Arabic)", name: "tagAr", widget: "string", required: false }
+              - { label: "Tag (Hindi)", name: "tagHi", widget: "string", required: false }
+              - { label: "Tag (Urdu)", name: "tagUr", widget: "string", required: false }
+              - { label: "Tag (Russian)", name: "tagRu", widget: "string", required: false }
+              - { label: "Tag (Chinese)", name: "tagZh", widget: "string", required: false }
+              - { label: "Photo", name: "img", widget: "image" }
+
+  - name: "developments"
+    label: "Developments"
+    files:
+      - name: "developments"
+        label: "Developments"
+        file: "data/developments.json"
+        fields:
+          - label: "Developments"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.developer}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Developer", name: "developer", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Status (English)", name: "status", widget: "string" }
+              - { label: "Status (Arabic)", name: "statusAr", widget: "string", required: false }
+              - { label: "Status (Hindi)", name: "statusHi", widget: "string", required: false }
+              - { label: "Status (Urdu)", name: "statusUr", widget: "string", required: false }
+              - { label: "Status (Russian)", name: "statusRu", widget: "string", required: false }
+              - { label: "Status (Chinese)", name: "statusZh", widget: "string", required: false }
+              - label: "Card color style"
+                name: "grad"
+                widget: "select"
+                options: [0, 1, 2, 3, 4]
+                hint: "Just picks which of the 5 built-in gradient colors this card uses — pick any."
+
+  - name: "testimonials"
+    label: "Testimonials"
+    files:
+      - name: "testimonials"
+        label: "Client Testimonials"
+        file: "data/testimonials.json"
+        fields:
+          - label: "Testimonials"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.who}}"
+            fields:
+              - { label: "Quote (English)", name: "quote", widget: "text" }
+              - { label: "Quote (Arabic)", name: "quoteAr", widget: "text", required: false }
+              - { label: "Quote (Hindi)", name: "quoteHi", widget: "text", required: false }
+              - { label: "Quote (Urdu)", name: "quoteUr", widget: "text", required: false }
+              - { label: "Quote (Russian)", name: "quoteRu", widget: "text", required: false }
+              - { label: "Quote (Chinese)", name: "quoteZh", widget: "text", required: false }
+              - { label: "Client Name", name: "who", widget: "string" }
