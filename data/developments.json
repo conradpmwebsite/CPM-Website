@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "name": "Saadiyat Grove",
+      "developer": "Aldar Properties",
+      "location": "Saadiyat Island",
+      "status": "Now Selling",
+      "statusAr": "البيع جارٍ الآن",
+      "statusHi": "बिक्री जारी",
+      "statusUr": "فروخت جاری",
+      "statusRu": "Продажи открыты",
+      "statusZh": "发售中",
+      "grad": 0
+    },
+    {
+      "name": "Ramhan Island",
+      "developer": "IMKAN",
+      "location": "Ramhan Island",
+      "status": "Launching 2027",
+      "statusAr": "الإطلاق 2027",
+      "statusHi": "2027 में लॉन्च",
+      "statusUr": "2027 میں لانچ",
+      "statusRu": "Запуск в 2027",
+      "statusZh": "2027年推出",
+      "grad": 1
+    },
+    {
+      "name": "Nine Yards",
+      "developer": "Eagle Hills",
+      "location": "Al Reem Island",
+      "status": "Under Construction",
+      "statusAr": "قيد الإنشاء",
+      "statusHi": "निर्माणाधीन",
+      "statusUr": "زیر تعمیر",
+      "statusRu": "Строится",
+      "statusZh": "建设中",
+      "grad": 2
+    },
+    {
+      "name": "Bloom Living",
+      "developer": "Bloom Holding",
+      "location": "Zayed City",
+      "status": "Now Selling",
+      "statusAr": "البيع جارٍ الآن",
+      "statusHi": "बिक्री जारी",
+      "statusUr": "فروخت جاری",
+      "statusRu": "Продажи открыты",
+      "statusZh": "发售中",
+      "grad": 3
+    },
+    {
+      "name": "Jubail Island",
+      "developer": "Jubail Island Investment Co.",
+      "location": "Jubail Island",
+      "status": "Phase 2 Now Selling",
+      "statusAr": "المرحلة الثانية - البيع جارٍ",
+      "statusHi": "चरण 2 बिक्री जारी",
+      "statusUr": "فیز 2 فروخت جاری",
+      "statusRu": "Этап 2 — продажи открыты",
+      "statusZh": "第二阶段发售中",
+      "grad": 4
+    }
+  ]
+}

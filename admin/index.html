@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager — CPM Real Estate</title>
+  <!-- This MUST be set before decap-cms.js loads below, or it can auto-initialize
+       itself first (reading a config.yml if one exists) before our manual config
+       has a chance to take over — causing a "duplicate collections" crash. -->
+  <script>window.CMS_MANUAL_INIT = true;</script>
+</head>
+<body>
+  <!-- Netlify Identity handles staff login -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Decap CMS itself (the editor UI) -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", (user) => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+
+  <!-- The CMS configuration, embedded directly here instead of being fetched
+       from a separate config.yml file — no file to 404 or conflict on. -->
+  <script>
+    var cmsConfig = {
+      backend: { name: "git-gateway", branch: "main" },
+      media_folder: "images/uploads",
+      public_folder: "/images/uploads",
+      collections: [
+        {
+          name: "listings",
+          label: "Listings",
+          files: [
+            {
+              name: "listings",
+              label: "Property Listings",
+              file: "data/listings.json",
+              fields: [
+                {
+                  label: "Listings", name: "items", widget: "list", summary: "{{fields.title}} — {{fields.price}}",
+                  fields: [
+                    { label: "Title (English)", name: "title", widget: "string" },
+                    { label: "Title (Arabic)", name: "titleAr", widget: "string", required: false },
+                    { label: "Title (Hindi)", name: "titleHi", widget: "string", required: false },
+                    { label: "Title (Urdu)", name: "titleUr", widget: "string", required: false },
+                    { label: "Title (Russian)", name: "titleRu", widget: "string", required: false },
+                    { label: "Title (Chinese)", name: "titleZh", widget: "string", required: false },
+                    { label: "District", name: "district", widget: "select", options: ["Al Raha Beach", "Khalifa City", "Saadiyat Island", "Al Reem Island", "Yas Island"] },
+                    { label: "Type", name: "type", widget: "select", options: ["Residential", "Commercial", "Investment"] },
+                    { label: "Status", name: "status", widget: "select", options: ["For Sale", "For Rent"] },
+                    { label: 'Price (display text, e.g. "AED 1,850,000" or "AED 145,000/yr")', name: "price", widget: "string" },
+                    { label: "Price (number only, no commas — used for the price filter)", name: "priceValue", widget: "number", value_type: "int" },
+                    { label: "Bedrooms (0 for studio/office/retail)", name: "beds", widget: "number", value_type: "int" },
+                    { label: "Bathrooms", name: "baths", widget: "number", value_type: "int" },
+                    { label: 'Square Feet (e.g. "1,240")', name: "sqft", widget: "string" },
+                    { label: "Photo", name: "img", widget: "image" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: "districts",
+          label: "Districts",
+          files: [
+            {
+              name: "districts",
+              label: "Districts",
+              file: "data/districts.json",
+              fields: [
+                {
+                  label: "Districts", name: "items", widget: "list", summary: "{{fields.name}}",
+                  fields: [
+                    { label: "Name", name: "name", widget: "string" },
+                    { label: "Tag / short label (English)", name: "tag", widget: "string" },
+                    { label: "Tag (Arabic)", name: "tagAr", widget: "string", required: false },
+                    { label: "Tag (Hindi)", name: "tagHi", widget: "string", required: false },
+                    { label: "Tag (Urdu)", name: "tagUr", widget: "string", required: false },
+                    { label: "Tag (Russian)", name: "tagRu", widget: "string", required: false },
+                    { label: "Tag (Chinese)", name: "tagZh", widget: "string", required: false },
+                    { label: "Photo", name: "img", widget: "image" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: "developments",
+          label: "Developments",
+          files: [
+            {
+              name: "developments",
+              label: "Developments",
+              file: "data/developments.json",
+              fields: [
+                {
+                  label: "Developments", name: "items", widget: "list", summary: "{{fields.name}} — {{fields.developer}}",
+                  fields: [
+                    { label: "Name", name: "name", widget: "string" },
+                    { label: "Developer", name: "developer", widget: "string" },
+                    { label: "Location", name: "location", widget: "string" },
+                    { label: "Status (English)", name: "status", widget: "string" },
+                    { label: "Status (Arabic)", name: "statusAr", widget: "string", required: false },
+                    { label: "Status (Hindi)", name: "statusHi", widget: "string", required: false },
+                    { label: "Status (Urdu)", name: "statusUr", widget: "string", required: false },
+                    { label: "Status (Russian)", name: "statusRu", widget: "string", required: false },
+                    { label: "Status (Chinese)", name: "statusZh", widget: "string", required: false },
+                    { label: "Card color style", name: "grad", widget: "select", options: [0, 1, 2, 3, 4], hint: "Just picks which of the 5 built-in gradient colors this card uses — pick any." }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          name: "testimonials",
+          label: "Testimonials",
+          files: [
+            {
+              name: "testimonials",
+              label: "Client Testimonials",
+              file: "data/testimonials.json",
+              fields: [
+                {
+                  label: "Testimonials", name: "items", widget: "list", summary: "{{fields.who}}",
+                  fields: [
+                    { label: "Quote (English)", name: "quote", widget: "text" },
+                    { label: "Quote (Arabic)", name: "quoteAr", widget: "text", required: false },
+                    { label: "Quote (Hindi)", name: "quoteHi", widget: "text", required: false },
+                    { label: "Quote (Urdu)", name: "quoteUr", widget: "text", required: false },
+                    { label: "Quote (Russian)", name: "quoteRu", widget: "text", required: false },
+                    { label: "Quote (Chinese)", name: "quoteZh", widget: "text", required: false },
+                    { label: "Client Name", name: "who", widget: "string" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+    window.addEventListener("DOMContentLoaded", () => {
+      if (window.CMS) { window.CMS.init({ config: cmsConfig }); }
+    });
+  </script>
+</body>
+</html>
